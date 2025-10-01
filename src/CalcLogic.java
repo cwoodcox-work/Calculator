@@ -25,42 +25,46 @@ public class CalcLogic {
             loopCount += 1;
             for (int i = 0; i < splitEquate.size(); i++) {
                 if (i % 2 == 0) {
-                    if (holdSign.equals("")) {
-                        tempNum1 = Integer.valueOf(splitEquate.get(i));
-                    } else if (holdSign.equals("/")) {
-                        tempNum2 = tempNum1 / Integer.valueOf(splitEquate.get(i));
-                        splitEquate.subList(i - 2, i+1).clear();
-                        splitEquate.add(i - 2, String.valueOf(tempNum2));
-                        tempNum1 = Integer.valueOf(tempNum2);
-                        i -= 2;
-                    } else if (holdSign.equals("*")) {
-                        tempNum2 = tempNum1 * Integer.valueOf(splitEquate.get(i));
-                        splitEquate.subList(i - 2, i+1).clear();
-                        splitEquate.add(i - 2, String.valueOf(tempNum2));
-                        tempNum1 = Integer.valueOf(tempNum2);
-                        i -= 2;
-                    } else if (holdSign.equals("+")){
-                        if(loopCount == 1){
+                    try {
+                        if (holdSign.equals("")) {
                             tempNum1 = Integer.valueOf(splitEquate.get(i));
-                        }else{
-                            tempNum2 = tempNum1 + Integer.valueOf(splitEquate.get(i));
-                            splitEquate.subList(i - 2, i+1).clear();
+                        } else if (holdSign.equals("/")) {
+                            tempNum2 = tempNum1 / Integer.valueOf(splitEquate.get(i));
+                            splitEquate.subList(i - 2, i + 1).clear();
                             splitEquate.add(i - 2, String.valueOf(tempNum2));
                             tempNum1 = Integer.valueOf(tempNum2);
                             i -= 2;
-                        }
-                    }else if (holdSign.equals("-")) {
-                        if (loopCount == 1) {
-                            tempNum1 = Integer.valueOf(splitEquate.get(i));
-                        } else {
-                            tempNum2 = tempNum1 - Integer.valueOf(splitEquate.get(i));
-                            splitEquate.subList(i - 2, i+1).clear();
+                        } else if (holdSign.equals("*")) {
+                            tempNum2 = tempNum1 * Integer.valueOf(splitEquate.get(i));
+                            splitEquate.subList(i - 2, i + 1).clear();
                             splitEquate.add(i - 2, String.valueOf(tempNum2));
                             tempNum1 = Integer.valueOf(tempNum2);
                             i -= 2;
+                        } else if (holdSign.equals("+")) {
+                            if (loopCount == 1) {
+                                tempNum1 = Integer.valueOf(splitEquate.get(i));
+                            } else {
+                                tempNum2 = tempNum1 + Integer.valueOf(splitEquate.get(i));
+                                splitEquate.subList(i - 2, i + 1).clear();
+                                splitEquate.add(i - 2, String.valueOf(tempNum2));
+                                tempNum1 = Integer.valueOf(tempNum2);
+                                i -= 2;
+                            }
+                        } else if (holdSign.equals("-")) {
+                            if (loopCount == 1) {
+                                tempNum1 = Integer.valueOf(splitEquate.get(i));
+                            } else {
+                                tempNum2 = tempNum1 - Integer.valueOf(splitEquate.get(i));
+                                splitEquate.subList(i - 2, i + 1).clear();
+                                splitEquate.add(i - 2, String.valueOf(tempNum2));
+                                tempNum1 = Integer.valueOf(tempNum2);
+                                i -= 2;
+                            }
                         }
+                    }catch(NumberFormatException e){
+                        String problem = "BAD INPUT";
+                        return problem;
                     }
-
                 } else {
                     holdSign = splitEquate.get(i);
                 }
