@@ -9,7 +9,8 @@ public class ButtonPanel extends JPanel {
             "7", "8", "9", "/",
             "4", "5", "6", "*",
             "1", "2", "3", "-",
-            "C", "0", "=", "+"
+            "C", "0", "=", "+",
+            "(", ")", ".", "^"
     };
 
     private DisplayPanel displayPanel;
@@ -19,7 +20,7 @@ public class ButtonPanel extends JPanel {
     public ButtonPanel(DisplayPanel displaypanel){
         displayPanel=displaypanel;
 
-        this.setLayout(new GridLayout(4,4,5,5));
+        this.setLayout(new GridLayout(5,4,5,5));
 
         buttons = new JButton[buttonLabels.length];
 
